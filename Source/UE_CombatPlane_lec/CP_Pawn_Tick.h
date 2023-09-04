@@ -24,4 +24,7 @@ protected:
 public:
 	virtual void Tick(float DeltaTime) override;
 
+private:
+	void MoveCurve(float _DeltaTime);
+	void MoveCurveWithInflection(float _DeltaTime);
 };
