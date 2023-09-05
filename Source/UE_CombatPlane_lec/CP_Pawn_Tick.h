@@ -25,6 +25,18 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 private:
-	void MoveCurve(float _DeltaTime);
-	void MoveCurveWithInflection(float _DeltaTime);
+	int32 IsOverInfPt;
+
+	enum class EInfPt 
+	{
+		BEFORE_45,
+		AFTER_45,
+		AFTER_0
+	};
+
+	EInfPt TakeOffState;
+
+	void MoveWithCurve(float _DeltaTime);
+	void MoveWithInfPt(float _DeltaTime);
+	void MoveWithEnum(float _DeltaTime);
 };
