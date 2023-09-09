@@ -25,20 +25,34 @@ void ACP_Pawn_KeyInput::BeginPlay()
 void ACP_Pawn_KeyInput::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	FRotator DelatRotation;
+	DelatRotation.Pitch = CurrentSpeed_Pitch * DeltaTime;
+	DelatRotation.Yaw = CurrentSpeed_Yaw * DeltaTime;
+
+	AddActorLocalRotation(DelatRotation);
 }
 
 void ACP_Pawn_KeyInput::SetupPlayerInputComponent(UInputComponent* _InputComponent)
 {
 	Super::SetupPlayerInputComponent(_InputComponent);
-
+	/*
+	* Roll : °¼¿ì¶×(X)
+	* Pitch : ²ô´ö²ô´ö(Y)
+	* Yaw : µµ¸®µµ¸®(Z)
+	*/
 	_InputComponent->BindAxis(TEXT("LookUp"), this, &ACP_Pawn_KeyInput::ProcessPitch);
 	_InputComponent->BindAxis(TEXT("TurnAround"), this, &ACP_Pawn_KeyInput::ProcessYaw);
 }
 
 void ACP_Pawn_KeyInput::ProcessPitch(float _Value)
 {
+	const float TargetSpeedPitch = _Value * AxisSpeed;
+	CurrentSpeed_Pitch = TargetSpeedPitch;
 }
 
 void ACP_Pawn_KeyInput::ProcessYaw(float _Value)
 {
+	const float TargetSpeedYaw = _Value * AxisSpeed;
+	CurrentSpeed_Yaw = TargetSpeedYaw;
 }

@@ -26,6 +26,10 @@ public:
 
 private:
 	const FRotator DefaultSpringArmRotation{ FRotator(-15.f, 0.f, 0.f) };
+	const float AxisSpeed{ 250.f };
+
+	float CurrentSpeed_Pitch{ 0.f };
+	float CurrentSpeed_Yaw{ 0.f };
 
 	void ProcessPitch(float _Value);
 	void ProcessYaw(float _Value);
