@@ -14,5 +14,6 @@ class UE_COMBATPLANE_LEC_API ACP_PC_Construct : public APlayerController
 {
 	GENERATED_BODY()
 	
-
+	virtual void PostInitializeComponents() override;
+	virtual void OnPossess(APawn* _APawn) override;
 };

@@ -3,3 +3,12 @@
 
 #include "CP_PC_Construct.h"
 
+void ACP_PC_Construct::PostInitializeComponents()
+{
+	Super::PostInitializeComponents();
+}
+
+void ACP_PC_Construct::OnPossess(APawn* _APawn)
+{
+	Super::OnPossess(_APawn);
+}
