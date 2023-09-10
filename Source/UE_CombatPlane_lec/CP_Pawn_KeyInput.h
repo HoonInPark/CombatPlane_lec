@@ -25,12 +25,18 @@ public:
 	USpringArmComponent* pSpringArm;
 
 private:
-	const FRotator DefaultSpringArmRotation{ FRotator(-15.f, 0.f, 0.f) };
+	FRotator DeltaRotation;
 	const float AxisSpeed{ 250.f };
 
 	float CurrentSpeed_Pitch{ 0.f };
 	float CurrentSpeed_Yaw{ 0.f };
+	float CurrentSpeed_Roll{ 0.f };
 
 	void ProcessPitch(float _Value);
 	void ProcessYaw(float _Value);
+
+	float StabilizeRoll(float _DeltaTime);
+
+	const FRotator DefaultSpringArmRotation{ FRotator(-15.f, 0.f, 0.f) };
+	void StabilizeSpringArm(float _DeltaTime);
 };
