@@ -14,17 +14,19 @@ class UE_COMBATPLANE_LEC_API ACP_Pawn_KeyInput : public ACP_Pawn_Construct
 {
 	GENERATED_BODY()
 
+protected:
 	ACP_Pawn_KeyInput();
 
+protected:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
 	virtual void SetupPlayerInputComponent(UInputComponent* _InputComponent) override;
 
-public:
+protected:
 	UPROPERTY()
 	USpringArmComponent* pSpringArm;
 
-private:
+protected:
 	FRotator DeltaRotation;
 	const float AxisSpeed{ 250.f };
 

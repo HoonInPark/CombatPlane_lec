@@ -11,7 +11,7 @@ class UE_COMBATPLANE_LEC_API ACP_Pawn_Construct : public APawn
 {
 	GENERATED_BODY()
 
-public:
+protected:
 	// Sets default values for this pawn's properties
 	ACP_Pawn_Construct();
 
