@@ -30,7 +30,9 @@ void UCP_AI_CombatPlane::ProcessSpeed(const FPawnMovement& _PawnMovement)
 {
 	Aileron_rt = FMath::Clamp(-40.f * _PawnMovement.Speed_Rotator.Roll - 40.f, -40.f, 40.f);
 	Aileron_lf = FMath::Clamp(40.f * _PawnMovement.Speed_Rotator.Roll - 40.f, -40.f, 40.f);
+
 	Elevator = FMath::Clamp(-40.f * _PawnMovement.Speed_Rotator.Pitch, -40.f, 40.f);
+
 	Rudder = FMath::Clamp(-40.f * _PawnMovement.Speed_Rotator.Yaw, -40.f, 40.f);
 
 	if (Propeller < 360.f)
