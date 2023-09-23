@@ -8,7 +8,13 @@
 #include "CP_Pawn_AnimInst.generated.h"
 
 /**
+ * <언리얼에서의 속도 가속도 개념>
+ * 다음 예시를 통해 속도 가속도를 알아보자.
  * 
+ * 속도 10으로 시작. 근데 프레임당 가속도 1이 붙음.
+ *	   1   1   1   1   1      F''(X)
+ *	10	11	12	13	14	15    F'(X)
+ * 0  10  21  33  47  62  77  F(X)
  */
 UCLASS()
 class UE_COMBATPLANE_LEC_API ACP_Pawn_AnimInst : public ACP_Pawn_KeyInput, public ICP_Pawn_To_AnimInstance
@@ -27,6 +33,10 @@ private:
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=CombatPlane)
 	UAnimInstance* pAnimInstance;
+
+private:
+	float LocalMove_Delta{ 0.f };
+	float AddLocalMove(float _DeltaTime);
 
 private:
 	virtual void PropellerTypeTick_Implementation(FPawnMovement _PawnMovement) override;

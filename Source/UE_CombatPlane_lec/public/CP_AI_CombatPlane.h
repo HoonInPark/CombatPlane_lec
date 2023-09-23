@@ -15,8 +15,6 @@ class UE_COMBATPLANE_LEC_API UCP_AI_CombatPlane : public UAnimInstance, public I
 {
 	GENERATED_BODY()
 	
-	UCP_AI_CombatPlane();
-
 public:
 	virtual void NativeUpdateAnimation(float _DeltaSeconds) override;
 
@@ -24,4 +22,22 @@ private:
 	virtual void PropellerTypeTick_Implementation(FPawnMovement _PawnMovement) override;
 	virtual void JetEngineTypeTick_Implementation(FPawnMovement _PawnMovement) override;
 
+private:
+	FPawnMovement PawnMovement_Tick{ FRotator::ZeroRotator, 0.f };
+	FPawnMovement PawnMovement_AnimInst{ FRotator::ZeroRotator, 0.f };
+
+	void InterpPawnSpeed(float _DeltaSeconds, const FPawnMovement& _PawnMovement);
+	void ProcessSpeed(const FPawnMovement& _PawnMovement);
+
+public:
+	UPROPERTY(BlueprintReadOnly)
+	float Aileron_rt;
+	UPROPERTY(BlueprintReadOnly)
+	float Aileron_lf;
+	UPROPERTY(BlueprintReadOnly)
+	float Elevator;
+	UPROPERTY(BlueprintReadOnly)
+	float Rudder;
+	UPROPERTY(BlueprintReadOnly)
+	float Propeller;
 };

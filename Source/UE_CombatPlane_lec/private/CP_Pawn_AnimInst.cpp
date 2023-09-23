@@ -34,6 +34,24 @@ void ACP_Pawn_AnimInst::PostInitializeComponents()
 	}
 }
 
+void ACP_Pawn_AnimInst::Tick(float _DelatTime)
+{
+	Super::Tick(_DelatTime);
+
+	const FPawnMovement PawnMovement = { DeltaRotation, AddLocalMove(_DelatTime)};
+	pAnimInstance = pMeshComp->GetAnimInstance();
+	ICP_Pawn_To_AnimInstance::Execute_PropellerTypeTick(pAnimInstance, PawnMovement);
+}
+
+float ACP_Pawn_AnimInst::AddLocalMove(float _DeltaTime)
+{
+	LocalMove_Delta = FMath::FInterpTo(LocalMove_Delta, 10000.f, _DeltaTime, 0.25f);
+	const FVector LocalMove_AnimInst = FVector(_DeltaTime * LocalMove_Delta, 0.f, 0.f);
+	AddActorLocalOffset(LocalMove_AnimInst);
+
+	return LocalMove_AnimInst.X;
+}
+
 void ACP_Pawn_AnimInst::PropellerTypeTick_Implementation(FPawnMovement _PawnMovement)
 {
 }
@@ -45,13 +63,4 @@ void ACP_Pawn_AnimInst::JetEngineTypeTick_Implementation(FPawnMovement _PawnMove
 void ACP_Pawn_AnimInst::BeginPlay()
 {
 	Super::BeginPlay();
-}
-
-void ACP_Pawn_AnimInst::Tick(float _DelatTime)
-{
-	Super::Tick(_DelatTime);
-
-	const FPawnMovement PawnMovement = { FRotator::ZeroRotator, 1.f };
-	pAnimInstance = pMeshComp->GetAnimInstance();
-	ICP_Pawn_To_AnimInstance::Execute_PropellerTypeTick(pAnimInstance, PawnMovement);
 }
