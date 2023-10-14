@@ -15,7 +15,7 @@ class UE_COMBATPLANE_LEC_API UCP_CharacterMovementComp : public UCharacterMoveme
 {
 	GENERATED_BODY()
 	
-	UCP_CharacterMovementComp();
+	UCP_CharacterMovementComp(const FObjectInitializer& _ObjectInitializer);
 
 protected:
 	virtual void InitializeComponent() override;

@@ -28,6 +28,8 @@ void UCP_AI_CombatPlane::InterpPawnSpeed(float _DeltaSeconds, const FPawnMovemen
 
 void UCP_AI_CombatPlane::ProcessSpeed(const FPawnMovement& _PawnMovement)
 {
+	CPLOG(Warning, TEXT(" _PawnMovement.Speed_Move : %f"), _PawnMovement.Speed_Move);
+
 	Aileron_rt = FMath::Clamp(-40.f * _PawnMovement.Speed_Rotator.Roll - 40.f, -40.f, 40.f);
 	Aileron_lf = FMath::Clamp(40.f * _PawnMovement.Speed_Rotator.Roll - 40.f, -40.f, 40.f);
 

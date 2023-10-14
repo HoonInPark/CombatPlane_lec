@@ -4,7 +4,8 @@
 #include "CP_CharacterMovementComp.h"
 #include "CP_Character.h"
 
-UCP_CharacterMovementComp::UCP_CharacterMovementComp()
+UCP_CharacterMovementComp::UCP_CharacterMovementComp(const FObjectInitializer& _ObjectInitializer)
+	: Super(_ObjectInitializer)
 {
 	PrimaryComponentTick.bCanEverTick = true;
 
@@ -20,7 +21,7 @@ void UCP_CharacterMovementComp::InitializeComponent()
 {
 	Super::InitializeComponent();
 
-	//pAnimInst = CastChecked<ACP_Character>(GetOwner()->GetThisAnimIn)
+	pAnimInst = Cast<ACP_Character>(GetOwner())->GetThisAnimInst();
 }
 
 #pragma region ForMultiplay
@@ -37,20 +38,20 @@ void UCP_CharacterMovementComp::OnMovementUpdated(float _DeltaSeconds, const FVe
 }
 #pragma endregion ForMultiplay
 
-void UCP_CharacterMovementComp::PropellerTypeTick_Implementation(FPawnMovement _PawnMovement)
-{
-}
-
-void UCP_CharacterMovementComp::JetEngineTypeTick_Implementation(FPawnMovement _PawnMovement)
-{
-}
-
 void UCP_CharacterMovementComp::TickComponent(float _DeltaSeconds, ELevelTick _TickType, FActorComponentTickFunction* _ThisTickFunction)
 {
 	Super::TickComponent(_DeltaSeconds, _TickType, _ThisTickFunction);
 
 	AddForce(FVector(MaxFlySpeed, 0.f, 0.f));
 
-	const FPawnMovement PawnMovement = { GetDeltaRotation(_DeltaSeconds), MaxFlySpeed * _DeltaSeconds };
-	//Execute_PropellerTypeTick();
+	const FPawnMovement PawnMovement = { GetDeltaRotation(_DeltaSeconds), _DeltaSeconds * MaxFlySpeed };
+	Execute_PropellerTypeTick(pAnimInst, PawnMovement);
+}
+
+void UCP_CharacterMovementComp::PropellerTypeTick_Implementation(FPawnMovement _PawnMovement)
+{
+}
+
+void UCP_CharacterMovementComp::JetEngineTypeTick_Implementation(FPawnMovement _PawnMovement)
+{
 }

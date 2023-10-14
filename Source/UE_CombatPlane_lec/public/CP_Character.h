@@ -19,7 +19,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = Movement)
 	class UCP_CharacterMovementComp* GetThisMovComp() const { return ThisMovComp; }
 	UFUNCTION(BlueprintCallable, Category = AnimInst)
-	class UAnimInstance* GetThisAnimInst() const { return ThisAnimInst; }
+	class UAnimInstance* GetThisAnimInst() { return ThisAnimInst; }
 
 private:
 	UPROPERTY()
