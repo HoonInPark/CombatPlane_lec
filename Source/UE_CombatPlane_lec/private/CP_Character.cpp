@@ -2,12 +2,16 @@
 
 
 #include "CP_Character.h"
+#include "CP_CharacterMovementComp.h"
 
 // Sets default values
-ACP_Character::ACP_Character()
+ACP_Character::ACP_Character(const FObjectInitializer& _ObjectInitializer) 
+	: Super(_ObjectInitializer.SetDefaultSubobjectClass<UCP_CharacterMovementComp>(ACharacter::CharacterMovementComponentName))
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+
+	ThisMovComp = CastChecked<UCP_CharacterMovementComp>(GetCharacterMovement());
 
 	pSpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("SPRINGARM"));
 	pCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("CAMREA"));
@@ -43,6 +47,22 @@ void ACP_Character::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+void ACP_Character::PreInitializeComponents()
+{
+	Super::PreInitializeComponents();
+
+	UAnimInstance* CurrentAnimInstance = GetMesh()->GetAnimInstance();
+	if (!CurrentAnimInstance)
+	{
+		ThisAnimInst = NewObject<UCP_AI_CombatPlane>(GetMesh(), UCP_AI_CombatPlane::StaticClass());
+		GetMesh()->SetAnimInstanceClass(ThisAnimInst->GetClass());
+		CPLOG(Warning, TEXT(" Anim Instance : %s"), *GetMesh()->GetAnimInstance()->GetName());
+	}
+	else
+		ThisAnimInst = CurrentAnimInstance;
+	
 }
 
 // Called to bind functionality to input

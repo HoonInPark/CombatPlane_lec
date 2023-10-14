@@ -30,4 +30,6 @@ protected:
 private:
 	virtual void PropellerTypeTick_Implementation(FPawnMovement _PawnMovement) override;
 	virtual void JetEngineTypeTick_Implementation(FPawnMovement _PawnMovement) override;
+
+	UAnimInstance* pAnimInst;
 };

@@ -2,6 +2,7 @@
 
 
 #include "CP_CharacterMovementComp.h"
+#include "CP_Character.h"
 
 UCP_CharacterMovementComp::UCP_CharacterMovementComp()
 {
@@ -18,6 +19,8 @@ UCP_CharacterMovementComp::UCP_CharacterMovementComp()
 void UCP_CharacterMovementComp::InitializeComponent()
 {
 	Super::InitializeComponent();
+
+	//pAnimInst = CastChecked<ACP_Character>(GetOwner()->GetThisAnimIn)
 }
 
 #pragma region ForMultiplay
