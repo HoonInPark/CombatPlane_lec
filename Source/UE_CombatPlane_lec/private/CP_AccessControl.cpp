@@ -10,7 +10,7 @@ ACP_AccessControl::ACP_AccessControl()
 	PrimaryActorTick.bCanEverTick = true;
 
 	pStaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ROCK"));
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> Rock(TEXT("/Script/Engine.StaticMesh'/Game/_01_BasicSettings/Meshes/SM_Rock.SM_Rock'"));
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> Rock(TEXT("/Script/Engine.StaticMesh'/Game/_01_BasicSettings/StaticMeshes/SM_Rock.SM_Rock'"));
 	RootComponent = pStaticMeshComponent;
 	pStaticMeshComponent->SetStaticMesh(Rock.Object);
 

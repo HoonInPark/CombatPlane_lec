@@ -11,7 +11,7 @@ class UE_COMBATPLANE_LEC_API ACP_AccessControl : public AActor
 {
 	GENERATED_BODY()
 	
-public:	
+public:
 	// Sets default values for this actor's properties
 	ACP_AccessControl();
 
