@@ -15,6 +15,7 @@ ACP_Character::ACP_Character()
 	pSpringArm->SetupAttachment(GetCapsuleComponent());
 	pSpringArm->TargetArmLength = 1000.f;
 	pSpringArm->SetRelativeRotation(FRotator(-15.f, 0.f, 0.f));
+	pSpringArm->bEnableCameraLag = true;
 
 	pCamera->SetupAttachment(pSpringArm);
 
@@ -25,6 +26,9 @@ ACP_Character::ACP_Character()
 		GetMesh()->SetRelativeLocationAndRotation(FVector(0.f, 0.f, -90.f), FRotator::ZeroRotator);
 	}
 
+	bUseControllerRotationPitch = true;
+	bUseControllerRotationRoll = true;
+	bUseControllerRotationYaw = true;
 }
 
 // Called when the game starts or when spawned
